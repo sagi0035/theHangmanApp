@@ -19,7 +19,44 @@
             android:text="Hangman"
             android:gravity="center"
             android:textSize="40dp"
-            android:textColor="@color/red"/>
+            android:textColor="@color/colorPrimaryDark"/>
+
+
+        <TextView
+            android:layout_below="@id/titleText"
+            android:id="@+id/winnerText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
+            android:text="Congragulations!!!\nYou win!"
+            android:gravity="center"
+            android:textSize="28dp"
+            android:textColor="@color/green"
+            android:visibility="invisible"/>
+
+
+        <TextView
+            android:layout_below="@id/titleText"
+            android:id="@+id/loserText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="100dp"
+            android:text="Sorry!!!\nYou lose!"
+            android:gravity="center"
+            android:textSize="28dp"
+            android:textColor="@color/red"
+            android:visibility="invisible"/>
+
+
+        <Button
+            android:layout_below="@+id/loserText"
+            android:id="@+id/thePlayAgainButton"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="play again"
+            android:visibility="invisible"/>
 
         <EditText
             android:layout_below="@+id/titleText"
