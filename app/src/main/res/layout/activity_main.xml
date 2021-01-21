@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <RelativeLayout
+        android:id="@+id/relolayo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".setUpActivity">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:text="Hangman"
+            android:gravity="center"
+            android:textSize="40dp"
+            android:textColor="@color/red"/>
+
+        <EditText
+            android:layout_below="@+id/titleText"
+            android:id="@+id/hangmanText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:hint="Enter the Text for your hangman!"/>
+
+        <EditText
+            android:layout_below="@+id/titleText"
+            android:id="@+id/guesser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:hint="Guess your letter or the full word!"
+            android:visibility="invisible"/>
+
+        <Button
+            android:layout_below="@+id/hangmanText"
+            android:id="@+id/theHangButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="input" />
+
+        <TextView
+            android:layout_below="@+id/theHangButton"
+            android:id="@+id/theBlanks"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"/>
+
+
+        <TextView
+            android:id="@+id/textViewOne"
+            android:layout_marginTop="250dp"
+            android:layout_marginLeft="135dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="______"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_below="@+id/textViewOne"
+            android:id="@+id/textViewTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="180dp"
+            android:text="|\n|\n|"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_below="@+id/textViewTwo"
+            android:id="@+id/textViewThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="172dp"
+            android:text="O"
+            android:textSize="25dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_below="@+id/textViewThree"
+            android:id="@+id/textViewFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="178dp"
+            android:text="|"
+            android:textSize="30dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_below="@+id/textViewThree"
+            android:id="@+id/textViewFive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="165dp"
+            android:text="/"
+            android:textSize="25dp"
+            android:visibility="invisible"/>
+
+
+        <TextView
+            android:layout_below="@+id/textViewThree"
+            android:id="@+id/textViewSix"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="188dp"
+            android:text="\"
+            android:textSize="25dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_below="@+id/textViewSix"
+            android:id="@+id/textViewSeven"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="165dp"
+            android:text="/"
+            android:textSize="25dp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:layout_below="@+id/textViewSix"
+            android:id="@+id/textViewEight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="188dp"
+            android:text="\"
+            android:textSize="25dp"
+            android:visibility="invisible"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/theBlanks"
+            android:id="@+id/allTheGuesses"
+            android:layout_marginTop="150dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:gravity="center"/>
+
+
+
+
+
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">hangManApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="Multiline_Text_By_N">
+        Line number 1 \nLine number 2
+    </string>
+</resources>
