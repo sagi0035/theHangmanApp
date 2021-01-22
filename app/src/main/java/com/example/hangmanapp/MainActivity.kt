@@ -68,10 +68,14 @@ class MainActivity : AppCompatActivity() {
     var playerPlayingInputter = true
     var playerPlayingTheGuesser = false
 
+    // so now we will create an array of all the correct letter guesses
+    val arrayOfAllTheCorrectLetters: List<String> = ArrayList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
 
         // and here we initialise everything!
@@ -109,6 +113,20 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+        // and now this is to rest everything
+        thePlayAgainButton.setOnClickListener() {
+            // so the entirety of the hangman must now be hiddn again!
+            theHangmanPartOne.visibility = View.INVISIBLE
+            theHangmanPartTwo.visibility = View.INVISIBLE
+            theHangmanPartThree.visibility = View.INVISIBLE
+            theHangmanPartFour.visibility = View.INVISIBLE
+            theHangmanPartFive.visibility = View.INVISIBLE
+            theHangmanPartSix.visibility = View.INVISIBLE
+            theHangmanPartSeven.visibility = View.INVISIBLE
+            theHangmanPartEight.visibility = View.INVISIBLE
+            // now we also will make the
+        }
+
 
         button.setOnClickListener() {
             // so if the inputter is playing we will set the basis for the guesser's input and change the player
@@ -141,7 +159,6 @@ class MainActivity : AppCompatActivity() {
     fun checkTheGuess() {
         // so firstly we will of course get the guess
         letterOrWordGuess = editTextTwo.text.toString()
-
 
         // now first we will check if the user just guessed a letter or a whole word which is required to win
         // if it is a whole word guess it has to perfectly match the hangman word
@@ -177,6 +194,9 @@ class MainActivity : AppCompatActivity() {
                 amendTheBlanks()
             }
         }
+
+        // and by the end we will clear the text so user can input something new
+        editTextTwo.text.clear()
     }
 
 
@@ -232,9 +252,6 @@ class MainActivity : AppCompatActivity() {
 
         // this is done through an iteration
         for (i in 0..theHangWord.length-1) {
-
-
-
             // so for each letter (not space) we create a blank
             if (i ==0 && !theHangWord[i].isWhitespace()) {
                 // here we initialise because the first letter is definitely not a blank
@@ -262,6 +279,8 @@ class MainActivity : AppCompatActivity() {
             // now if the letter matches the user's guess we set the letter instead of the blank
             if (letter.toString().equals(letterOrWordGuess)) {
                 blanksOfTheHangmanWord+= "$letter  "
+                // and we add the letter to the array list
+                arrayOfAllTheCorrectLetters
             }
             // once again if there is an empty space we will handle it
             else if (letter.isWhitespace()) {
