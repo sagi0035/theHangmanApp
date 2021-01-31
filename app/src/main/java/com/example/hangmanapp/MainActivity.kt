@@ -1,17 +1,14 @@
 package com.example.hangmanapp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.isVisible
-import androidx.core.widget.addTextChangedListener
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -69,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     var playerPlayingTheGuesser = false
 
     // so now we will create an array of all the correct letter guesses
-    val arrayOfAllTheCorrectLetters: List<String> = ArrayList()
+    var arrayOfAllTheCorrectLetters: ArrayList<String> = ArrayList()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,7 +121,30 @@ class MainActivity : AppCompatActivity() {
             theHangmanPartSix.visibility = View.INVISIBLE
             theHangmanPartSeven.visibility = View.INVISIBLE
             theHangmanPartEight.visibility = View.INVISIBLE
-            // now we also will make the
+            // now we also will make the list of incorrect guesses invisible
+            textViewOfGuesses.visibility = View.INVISIBLE
+            // we will also make the blanks invisible
+            textViewOfTheBlanks.visibility = View.INVISIBLE
+
+            // now we will make the button visible again
+            button.visibility = View.VISIBLE
+            editTextOne.visibility = View.VISIBLE
+            // also make sure that we clear the text here
+            editTextOne.text.clear()
+            // and we will also set the string listing all the guesses to once again be empty to start guesses afresh
+            allTheUserGuessses = ""
+            // and we will make the play again button invisible
+            thePlayAgainButton.visibility = View.INVISIBLE
+            // and we will assure that both the textview's are also invisible
+            theFinishWithLose.visibility = View.INVISIBLE
+            theFinishWithWin.visibility = View.INVISIBLE
+
+            // and now the player playing is obviously changed
+            playerPlayingInputter = true
+            playerPlayingTheGuesser = false
+
+            // we will also re-set the number of tries to 0
+            numberOfTries = 0
         }
 
 
@@ -140,6 +160,8 @@ class MainActivity : AppCompatActivity() {
                     createGuesserLayout(wordToGuess)
                     playerPlayingInputter = false
                     playerPlayingTheGuesser = true
+                    // now we hide the keyboard
+                    hideKeyboard()
                 } else {
                     Toast.makeText(applicationContext, "Error\nPlease note that the first letter must not be blank " +
                             "and that the word needs to be more than 3 letters long!",
@@ -154,6 +176,16 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    // this is a function to hide the keyboard
+    open fun hideKeyboard(): Unit {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     fun checkTheGuess() {
@@ -173,9 +205,11 @@ class MainActivity : AppCompatActivity() {
                 textViewOfGuesses.setText(allTheUserGuessses)
                 numberOfTries+=1
                 buildTheHangman()
+                hideKeyboard()
             } else if (letterOrWordGuess.equals(wordToGuess)) {
                 // so we will set the tring to it being a winner
                 winOrLose = "win"
+                hideKeyboard()
                 // if on the other hand they are equal we will conclude the game for the winner
                 concludeGame()
             }
@@ -187,9 +221,11 @@ class MainActivity : AppCompatActivity() {
                 allTheUserGuessses+=letterOrWordGuess+"\n"
                 textViewOfGuesses.setText(allTheUserGuessses)
                 numberOfTries+=1
+                hideKeyboard()
                 // so if the letter guessed is incorrect we build the hangman
                 buildTheHangman()
             } else {
+                hideKeyboard()
                 // so if the guess is correct we will amend the blanks to have the letter instead
                 amendTheBlanks()
             }
@@ -246,8 +282,11 @@ class MainActivity : AppCompatActivity() {
         editTextOne.visibility = View.INVISIBLE
         editTextTwo.visibility = View.VISIBLE
 
-        // and we will also set the textview of the guesses
+        // and we will also set the text view of the guesses
         textViewOfGuesses.visibility = View.VISIBLE
+        // and set the text to be as per the string for the play again
+        textViewOfGuesses.setText(allTheUserGuessses);
+
 
 
         // this is done through an iteration
@@ -268,6 +307,12 @@ class MainActivity : AppCompatActivity() {
         // now we will form the textview of the blanks as per how many letters are in word guessed
         textViewOfTheBlanks.setText(blanksOfTheHangmanWord)
 
+        // now in the case were we are replaying the game the text view will be invisible
+        // so we will make sure that it is not empty
+        if (textViewOfTheBlanks.visibility == View.INVISIBLE) {
+            textViewOfTheBlanks.visibility = View.VISIBLE
+        }
+
 
     }
 
@@ -280,7 +325,11 @@ class MainActivity : AppCompatActivity() {
             if (letter.toString().equals(letterOrWordGuess)) {
                 blanksOfTheHangmanWord+= "$letter  "
                 // and we add the letter to the array list
-                arrayOfAllTheCorrectLetters
+                arrayOfAllTheCorrectLetters.add(letter.toString())
+            }
+            // now if the array list contains the letter we also do do not place a blank
+            else if (arrayOfAllTheCorrectLetters.contains(letter.toString())) {
+                blanksOfTheHangmanWord+= "$letter  "
             }
             // once again if there is an empty space we will handle it
             else if (letter.isWhitespace()) {

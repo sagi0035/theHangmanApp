@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="188dp"
-            android:text="\"
+            android:text="\\"
             android:textSize="25dp"
             android:visibility="invisible"/>
 
@@ -176,7 +176,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="188dp"
-            android:text="\"
+            android:text="\\"
             android:textSize="25dp"
             android:visibility="invisible"/>
 
@@ -184,9 +184,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/theBlanks"
+            android:layout_below="@+id/textViewEight"
             android:id="@+id/allTheGuesses"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:gravity="center"/>
